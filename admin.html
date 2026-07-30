@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración — El Arrebato</title>
+    
+    <!-- CSS de la Web (incluye variables core) -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Estilos específicos para la interfaz de administración -->
+    <style>
+        body {
+            background-color: #0c0b0a;
+            font-family: 'Inter', sans-serif;
+            color: #F4EFE5;
+        }
+        
+        /* Contenedor Login */
+        #admin-auth-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, #251216 0%, #0c0b0a 70%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 24px;
+        }
+        
+        .auth-card {
+            background: #171514;
+            border: 1px solid var(--color-gold);
+            border-radius: var(--radius-lg);
+            padding: 48px 32px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+        
+        .auth-card h2 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--color-ivory);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .auth-card p {
+            color: var(--color-gray-warm);
+            font-size: 0.85rem;
+            margin-bottom: 32px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+        
+        .auth-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .auth-form-group input {
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-sm);
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.3);
+            text-align: center;
+            font-size: 1.1rem;
+            letter-spacing: 0.3em;
+            color: var(--color-ivory);
+        }
+        
+        .auth-form-group input:focus {
+            border-color: var(--color-gold);
+        }
+        
+        /* Contenedor Dashboard Principal */
+        #admin-dashboard {
+            display: none;
+            min-height: 100vh;
+        }
+        
+        .admin-header {
+            background: #171514;
+            padding: 20px 48px;
+            border-bottom: 1px solid var(--color-border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-ivory);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        .admin-header h1 span {
+            color: var(--color-gold);
+        }
+        
+        .admin-header-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+        
+        .admin-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            min-height: calc(100vh - 77px);
+        }
+        
+        /* Sidebar de navegación */
+        .admin-sidebar {
+            background: #12100F;
+            border-right: 1px solid var(--color-border-light);
+            padding: 32px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .admin-tab-btn {
+            width: 100%;
+            padding: 14px 24px;
+            text-align: left;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-gray-warm);
+            cursor: pointer;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 3px solid transparent;
+        }
+        
+        .admin-tab-btn:hover {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--color-ivory);
+        }
+        
+        .admin-tab-btn.active {
+            background: rgba(198, 161, 91, 0.05);
+            color: var(--color-gold);
+            border-left-color: var(--color-gold);
+            font-weight: 600;
+        }
+        
+        /* Panel de Contenido */
+        .admin-content {
+            padding: 48px;
+            background-color: #0c0b0a;
+            overflow-y: auto;
+        }
+        
+        .admin-tab-panel {
+            display: none;
+        }
+        
+        .admin-tab-panel.active {
+            display: block;
+        }
+        
+        .panel-title {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--color-border-light);
+            padding-bottom: 16px;
+            color: var(--color-ivory);
+        }
+        
+        .panel-subtitle {
+            color: var(--color-gray-warm);
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        /* Formularios y Cajas del Panel */
+        .admin-card {
+            background: #171514;
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .admin-card h3 {
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-gold);
+            margin-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 12px;
+        }
+        
+        .admin-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        
+        .admin-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .admin-form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        .admin-form-group label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-gray-warm);
+        }
+        
+        .admin-form-group input, 
+        .admin-form-group textarea, 
+        .admin-form-group select {
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-sm);
+            padding: 12px 14px;
+            background: rgba(0, 0, 0, 0.2);
+            font-size: 0.9rem;
+            color: var(--color-ivory);
+        }
+        
+        .admin-form-group input:focus, 
+        .admin-form-group textarea:focus {
+            border-color: var(--color-gold);
+        }
+        
+        .admin-form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        /* Tablas */
+        .admin-table-container {
+            overflow-x: auto;
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-md);
+            background: #171514;
+        }
+        
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.85rem;
+        }
+        
+        .admin-table th, 
+        .admin-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--color-border-light);
+        }
+        
+        .admin-table th {
+            background-color: rgba(255,255,255,0.02);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            color: var(--color-gold);
+            font-weight: 600;
+        }
+        
+        .admin-table tbody tr:hover {
+            background-color: rgba(255,255,255,0.01);
+        }
+        
+        /* Badges de Estado */
+        .adm-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .badge-pendiente { background: rgba(255, 193, 7, 0.1); color: #ffc107; border: 1px solid rgba(255, 193, 7, 0.2); }
+        .badge-aprobado { background: rgba(76, 175, 80, 0.1); color: #4caf50; border: 1px solid rgba(76, 175, 80, 0.2); }
+        .badge-enviado { background: rgba(33, 150, 243, 0.1); color: #2196f3; border: 1px solid rgba(33, 150, 243, 0.2); }
+        .badge-cancelado { background: rgba(244, 67, 54, 0.1); color: #f44354; border: 1px solid rgba(244, 67, 54, 0.2); }
+        .badge-info { background: rgba(156, 39, 176, 0.1); color: #9c27b0; border: 1px solid rgba(156, 39, 176, 0.2); }
+        
+        .adm-status-select {
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            background: var(--color-bg-dark);
+            border: 1px solid var(--color-border);
+            color: var(--color-ivory);
+            cursor: pointer;
+        }
+        
+        /* Editor de Testimonios */
+        .adm-testimonial-card {
+            transition: var(--transition-fast);
+        }
+        .adm-testimonial-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-soft);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- A. Pantalla de Bloqueo / Autenticación -->
+    <div id="admin-auth-wrapper">
+        <div class="auth-card">
+            <h2>EL ARREBATO</h2>
+            <p>Acceso Bodega Interno</p>
+            
+            <div class="auth-form-group">
+                <input type="password" id="admin-pin" placeholder="••••••••" maxlength="12" autofocus>
+                <div id="admin-auth-error" style="color: #f44336; font-size: 0.8rem; min-height: 18px; margin-top: 4px;"></div>
+            </div>
+            
+            <button class="btn btn-solid" id="admin-auth-btn" style="width: 100%;">Ingresar</button>
+            <div style="margin-top: 24px;">
+                <a href="index.html" class="btn-ghost" style="font-size: 0.75rem;">Volver al sitio público</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- B. Dashboard de Administración -->
+    <div id="admin-dashboard">
+        <header class="admin-header">
+            <h1>EL ARREBATO <span>· Panel de Bodega</span></h1>
+            <div class="admin-header-actions">
+                <a href="index.html" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.75rem; text-transform: uppercase;">Ir a la Web</a>
+                <button class="btn btn-solid" id="admin-logout-btn" style="padding: 8px 16px; font-size: 0.75rem; text-transform: uppercase;">Cerrar Sesión</button>
+            </div>
+        </header>
+        
+        <div class="admin-layout">
+            <!-- Barra lateral de pestañas -->
+            <aside class="admin-sidebar">
+                <div class="admin-tab-btn active" data-tab="settings">Ajustes Comerciales</div>
+                <div class="admin-tab-btn" data-tab="orders">Pedidos Recibidos</div>
+                <div class="admin-tab-btn" data-tab="inquiries">Consultas Mayoristas</div>
+                <div class="admin-tab-btn" data-tab="news">Suscripciones Boletín</div>
+                <div class="admin-tab-btn" data-tab="testimonials">Testimonios Web</div>
+                <div class="admin-tab-btn" data-tab="analytics">Analítica & Tracking</div>
+            </aside>
+            
+            <!-- Contenido de las Pestañas -->
+            <main class="admin-content">
+                
+                <!-- Pestaña 1: Ajustes Comerciales y Contenidos -->
+                <div class="admin-tab-panel active" id="tab-settings">
+                    <h2 class="panel-title">Ajustes Comerciales y Contenidos</h2>
+                    <p class="panel-subtitle">Configurá precios, stock, maridajes y los textos de la landing page. Los cambios se sincronizarán al instante.</p>
+                    
+                    <form id="admin-settings-form">
+                        <!-- Caja de Precios y Envíos -->
+                        <div class="admin-card">
+                            <h3>Precios y Logística</h3>
+                            <div class="admin-form-grid">
+                                <div class="admin-form-group">
+                                    <label for="adm-price">Precio Botella Malbec 750 ml ($ ARS) *</label>
+                                    <input type="number" id="adm-price" required min="0" step="1">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="adm-stock">Stock disponible (Botellas individuales) *</label>
+                                    <input type="number" id="adm-stock" required min="0" step="1">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="adm-free-shipping">Importe mínimo para Envío Gratis ($ ARS) *</label>
+                                    <input type="number" id="adm-free-shipping" required min="0" step="1">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="adm-ship-mza">Costo Envío Local (Mendoza) *</label>
+                                    <input type="number" id="adm-ship-mza" required min="0" step="1">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="adm-ship-ba">Costo Envío CABA / Buenos Aires *</label>
+                                    <input type="number" id="adm-ship-ba" required min="0" step="1">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="adm-ship-resto">Costo Envío Resto del País *</label>
+                                    <input type="number" id="adm-ship-resto" required min="0" step="1">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Caja de Descuentos -->
+                        <div class="admin-card">
+                            <h3>Descuentos y Ofertas por Cantidad</h3>
+                            <div class="admin-form-grid">
+                                <div class="admin-form-group">
+                                    <label for="adm-disc-pack3">Descuento Pack 3 Botellas (%)</label>
+                                    <input type="number" id="adm-disc-pack3" min="0" max="100" step="0.5">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="adm-disc-caja6">Descuento Caja 6 Botellas (%)</label>
+                                    <input type="number" id="adm-disc-caja6" min="0" max="100" step="0.5">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="adm-disc-caja12">Descuento Caja 12 Botellas (%)</label>
+                                    <input type="number" id="adm-disc-caja12" min="0" max="100" step="0.5">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Caja de Textos y Nota de Cata -->
+                        <div class="admin-card">
+                            <h3>Ficha y Notas de Cata</h3>
+                            <div class="admin-form-grid">
+                                <div class="admin-form-group full-width">
+                                    <label for="adm-tasting">Notas de Cata Oficiales</label>
+                                    <textarea id="adm-tasting" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Caja de Historias e Identidad -->
+                        <div class="admin-card">
+                            <h3>Historia de la Bodega y Conceptos</h3>
+                            <div class="admin-form-grid">
+                                <div class="admin-form-group full-width">
+                                    <label for="adm-history">Relato de la Historia (Concepto de Amigos / Familia Arreguez)</label>
+                                    <textarea id="adm-history" rows="5"></textarea>
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="adm-art-author">Artista Autor de la Obra de Etiqueta</label>
+                                    <input type="text" id="adm-art-author">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="adm-art-inspiration">Inspiración de la obra</label>
+                                    <input type="text" id="adm-art-inspiration">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="adm-art-woman">Significado de la Figura Femenina</label>
+                                    <input type="text" id="adm-art-woman">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="adm-art-pentagon">Significado del Pentágono en la etiqueta</label>
+                                    <input type="text" id="adm-art-pentagon">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Datos de contacto y legales -->
+                        <div class="admin-card">
+                            <h3>Datos de Contacto e Información Fiscal</h3>
+                            <div class="admin-form-grid">
+                                <div class="admin-form-group">
+                                    <label for="adm-phone">Teléfono de atención (WhatsApp)</label>
+                                    <input type="text" id="adm-phone">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="adm-email">Email de atención al cliente</label>
+                                    <input type="email" id="adm-email">
+                                </div>
+                                <div class="admin-form-group full-width">
+                                    <label for="adm-address">Dirección de la Bodega</label>
+                                    <input type="text" id="adm-address">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="adm-razon">Razón Social de la empresa</label>
+                                    <input type="text" id="adm-razon">
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="adm-fiscal">Información Legal e Inscripción INV</label>
+                                    <input type="text" id="adm-fiscal">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: right;">
+                            <button type="submit" class="btn btn-solid" style="padding: 16px 40px;">Guardar todas las configuraciones</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Pestaña 2: Pedidos Recibidos (E-commerce) -->
+                <div class="admin-tab-panel" id="tab-orders">
+                    <h2 class="panel-title">Pedidos Recibidos</h2>
+                    <p class="panel-subtitle">Lista de compras y solicitudes de envío realizadas en tiempo real a través del checkout de la tienda.</p>
+                    
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Pedido ID</th>
+                                    <th>Fecha</th>
+                                    <th>Cliente</th>
+                                    <th>Dirección de Entrega</th>
+                                    <th>Vinos</th>
+                                    <th>Total & Pago</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adm-orders-table">
+                                <!-- Pedidos dinámicos -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Pestaña 3: Consultas Mayoristas -->
+                <div class="admin-tab-panel" id="tab-inquiries">
+                    <h2 class="panel-title">Consultas Mayoristas y Contactos</h2>
+                    <p class="panel-subtitle">Consultas y propuestas comerciales de Vinotecas, Distribuidores, Hoteles y Restaurantes interesados en el vino.</p>
+                    
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Contacto</th>
+                                    <th>Ciudad</th>
+                                    <th>WhatsApp</th>
+                                    <th>Email</th>
+                                    <th>Rubro</th>
+                                    <th>Mensaje</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adm-inquiries-table">
+                                <!-- Consultas dinámicas -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Pestaña 4: Suscriptores Newsletter -->
+                <div class="admin-tab-panel" id="tab-news">
+                    <h2 class="panel-title">Suscriptores al Boletín (Newsletter)</h2>
+                    <p class="panel-subtitle">Base de datos de correos electrónicos de clientes registrados para campañas de email marketing o preventas de nuevas cosechas.</p>
+                    
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Correo Electrónico</th>
+                                    <th>Fecha de Nacimiento</th>
+                                    <th>Fecha Registro</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adm-news-table">
+                                <!-- Newsletter dinámico -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Pestaña 5: Administrar Testimonios -->
+                <div class="admin-tab-panel" id="tab-testimonials">
+                    <h2 class="panel-title">Administrar Reseñas y Testimonios</h2>
+                    <p class="panel-subtitle">Gestioná las opiniones que se muestran en el carrusel de la página web. Podés agregar testimonios de prueba, activarlos u ocultarlos.</p>
+                    
+                    <div class="admin-form-grid" style="align-items: start;">
+                        <!-- Lista de testimonios -->
+                        <div style="flex: 1;">
+                            <h4 style="font-size:1.1rem; text-transform:uppercase; color:var(--color-gold); margin-bottom:16px;">Reseñas en Base de Datos</h4>
+                            <div id="adm-testimonials-container">
+                                <!-- Cargando dinámico -->
+                            </div>
+                        </div>
+                        
+                        <!-- Formulario de nuevo testimonio -->
+                        <div class="admin-card" style="position: sticky; top: 20px;">
+                            <h3>Crear Nueva Reseña</h3>
+                            <form id="adm-add-test-form">
+                                <div class="admin-form-group" style="margin-bottom: 16px;">
+                                    <label for="test-new-name">Nombre del Cliente *</label>
+                                    <input type="text" id="test-new-name" required placeholder="Ej: Santiago M.">
+                                </div>
+                                <div class="admin-form-group" style="margin-bottom: 16px;">
+                                    <label for="test-new-stars">Puntuación (Estrellas) *</label>
+                                    <select id="test-new-stars">
+                                        <option value="5">5 Estrellas (Excelente)</option>
+                                        <option value="4">4 Estrellas (Muy bueno)</option>
+                                        <option value="3">3 Estrellas (Bueno)</option>
+                                        <option value="2">2 Estrellas (Regular)</option>
+                                        <option value="1">1 Estrella (Malo)</option>
+                                    </select>
+                                </div>
+                                <div class="admin-form-group" style="margin-bottom: 16px;">
+                                    <label for="test-new-text">Texto de la opinión *</label>
+                                    <textarea id="test-new-text" required rows="4" placeholder="Escribí aquí el comentario del cliente..."></textarea>
+                                </div>
+                                <div class="admin-form-group" style="margin-bottom: 24px; flex-direction:row; align-items:center; gap:8px;">
+                                    <input type="checkbox" id="test-new-verified" checked style="width:auto;">
+                                    <label for="test-new-verified" style="cursor:pointer; margin-top:2px;">Mostrar etiqueta "Compra Verificada"</label>
+                                </div>
+                                <button type="submit" class="btn btn-solid" style="width: 100%;">Publicar Testimonio</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pestaña 6: Analítica Web y Metricas -->
+                <div class="admin-tab-panel" id="tab-analytics">
+                    <h2 class="panel-title">Métricas y Eventos de Marketing</h2>
+                    <p class="panel-subtitle">Consolidado de eventos simulados que registran el recorrido de los usuarios, desde el ingreso por el Age Gate hasta la compra exitosa.</p>
+                    
+                    <!-- Tarjetas de métricas -->
+                    <div class="admin-form-grid" id="adm-analytics-metrics" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 32px;">
+                        <!-- Cargando dinámico -->
+                    </div>
+                    
+                    <h4 style="font-size:1.1rem; text-transform:uppercase; color:var(--color-gold); margin-bottom:16px;">Registro Reciente de Eventos (Event Log)</h4>
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha / Hora</th>
+                                    <th>Nombre del Evento</th>
+                                    <th>Parámetros y Datos</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adm-analytics-table">
+                                <!-- Eventos log dinámico -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </main>
+        </div>
+    </div>
+
+    <!-- Script de lógica administrativa -->
+    <script src="js/admin.js"></script>
+</body>
+</html>

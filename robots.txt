@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /css/
+Allow: /js/
+Allow: /public/
+Disallow: /admin.html
+
+Sitemap: https://www.elarrebatowines.com.ar/sitemap.xml

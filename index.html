@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Metadata Primario -->
+    <title>El Arrebato — Vino Malbec Premium de Valle de Uco, Mendoza</title>
+    <meta name="description" content="Descubrí El Arrebato, un Malbec premium de Valle de Uco, Mendoza. Creado bajo el concepto del pentágono de los amigos para transformar encuentros en recuerdos. Compra online segura.">
+    <meta name="keywords" content="El Arrebato vino, El Arrebato Malbec, Malbec Valle de Uco, Comprar vino Malbec online, Comprar vino de Mendoza, Vino argentino premium, Vino para regalar, Vinos del Valle de Uco">
+    <link rel="canonical" href="https://www.elarrebatowines.com.ar/">
+
+    <!-- Open Graph (Redes Sociales) -->
+    <meta property="og:type" content="product">
+    <meta property="og:title" content="El Arrebato — Vino Malbec Premium de Valle de Uco">
+    <meta property="og:description" content="Desde el Valle de Uco, Mendoza, una edición con carácter, arte y una historia de amistad. Edición exclusiva 750 ml.">
+    <meta property="og:image" content="public/images/arrebato_perspectiva.png">
+    <meta property="og:url" content="https://www.elarrebatowines.com.ar/">
+    <meta property="og:site_name" content="El Arrebato">
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- FAQ Schema JSON-LD para SEO y AEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Dónde se produce El Arrebato?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El Arrebato se produce y embotella en el Valle de Uco, en la prestigiosa zona vitivinícola de Gualtallary, Mendoza, Argentina."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué tipo de vino es?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es un vino tinto varietal 100% Malbec, cosecha 2025, de perfil premium y sofisticado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál es el contenido de la botella?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La presentación oficial de El Arrebato Malbec es en botella de vidrio premium de 750 ml."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Realizan envíos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, realizamos envíos a todo el territorio de la República Argentina de forma segura y garantizada."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto demora la entrega?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los envíos dentro de Mendoza demoran de 24 a 48 horas. Para CABA, GBA y principales capitales nacionales, el tiempo es de 3 a 5 días hábiles. El resto del país demora de 5 a 7 días hábiles."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué medios de pago aceptan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aceptamos tarjetas de crédito y débito a través de la plataforma segura de Mercado Pago, y transferencia bancaria directa."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Product Schema JSON-LD para Google Search -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "El Arrebato Malbec 2025",
+      "image": [
+        "public/images/arrebato_frente.png",
+        "public/images/arrebato_perspectiva.png"
+      ],
+      "description": "Vino Malbec premium añada 2025 de Valle de Uco, Mendoza. 14% Alc./Vol. Producido para Familia Arreguez.",
+      "sku": "EA-MALBEC-2025",
+      "brand": {
+        "@type": "Brand",
+        "name": "El Arrebato"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "ARS",
+        "lowPrice": "15725",
+        "highPrice": "18500",
+        "offerCount": "4",
+        "priceValidUntil": "2027-12-31",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <!-- 1. Verificación de Edad (Age Gate) -->
+    <div id="age-gate">
+        <div class="age-gate-card">
+            <div class="age-gate-logo">EL ARREBATO</div>
+            <div class="age-gate-subtitle">Valle de Uco · Mendoza</div>
+            <h2 class="age-gate-title">Bienvenido a El Arrebato</h2>
+            <p style="color: var(--color-gray-warm); font-size: 0.9rem; margin-bottom: 24px;">¿Sos mayor de 18 años para ingresar a la experiencia?</p>
+            
+            <div class="age-gate-buttons">
+                <button class="btn btn-solid" id="age-yes">Sí, ingresar</button>
+                <button class="btn btn-outline" id="age-no">No, salir</button>
+            </div>
+            
+            <div class="age-gate-warning">
+                Beber con moderación. Prohibida su venta a menores de 18 años.
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Carrito de Compras Lateral (Drawer) -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div id="cart-drawer">
+        <div class="cart-header">
+            <h3>Tu selección de vinos</h3>
+            <span class="close-cart" id="close-cart">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" fill="none" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </span>
+        </div>
+        
+        <div class="cart-items-container" id="cart-items-container">
+            <!-- Renderizado dinámico de items vía JS -->
+        </div>
+        
+        <div class="cart-footer">
+            <div class="discount-code-section">
+                <div class="discount-code-row">
+                    <input type="text" id="promo-code-input" placeholder="Ingresá código de descuento (Ej: AMIGOS10)" value="">
+                    <button class="btn btn-outline" id="apply-promo-btn">Aplicar</button>
+                </div>
+                <div class="discount-message" id="promo-message"></div>
+            </div>
+            
+            <div class="cart-subtotal-row">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal">$0</span>
+            </div>
+            <div class="cart-subtotal-row text-sunset" style="display: none;">
+                <span>Descuento aplicado:</span>
+                <span id="cart-discount">-$0</span>
+            </div>
+            <div class="cart-subtotal-row">
+                <span>Envío estimado:</span>
+                <span id="cart-shipping">$0</span>
+            </div>
+            <div class="cart-subtotal-row total">
+                <span>Total:</span>
+                <span id="cart-total">$0</span>
+            </div>
+            
+            <button class="btn btn-solid" id="btn-checkout">Proceder al checkout</button>
+            <div class="cart-continue-shopping" id="continue-shopping">Seguir explorando</div>
+        </div>
+    </div>
+
+    <!-- 3. Modal de Checkout de Compra -->
+    <div class="checkout-modal" id="checkout-modal">
+        <div class="checkout-card">
+            <div class="checkout-header">
+                <h3>Finalizar Compra</h3>
+                <span class="close-checkout" id="close-checkout">&times;</span>
+            </div>
+            
+            <div class="checkout-steps-nav">
+                <div class="checkout-step-nav-item active" id="step-nav-1">1. Envío</div>
+                <div class="checkout-step-nav-item" id="step-nav-2">2. Pago</div>
+                <div class="checkout-step-nav-item" id="step-nav-3">3. Confirmación</div>
+            </div>
+            
+            <div class="checkout-body">
+                <!-- Paso 1: Datos Personales y de Envío -->
+                <div class="checkout-step-panel active" id="step-panel-1">
+                    <h4 style="font-family:var(--font-sans); font-size:1.1rem; margin-bottom:20px; font-weight:600;">Detalle de entrega</h4>
+                    <form class="checkout-form-grid" id="checkout-form-1" onsubmit="return false;">
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label for="chk-name">Nombre y Apellido completo *</label>
+                            <input type="text" id="chk-name" required placeholder="Ej: Juan Arreguez">
+                        </div>
+                        <div class="form-group">
+                            <label for="chk-email">Email *</label>
+                            <input type="email" id="chk-email" required placeholder="juan@ejemplo.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="chk-phone">WhatsApp / Celular *</label>
+                            <input type="tel" id="chk-phone" required placeholder="Ej: +54 9 261 123456">
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label for="chk-address">Calle, número, piso, dpto *</label>
+                            <input type="text" id="chk-address" required placeholder="Dirección completa de entrega">
+                        </div>
+                        <div class="form-group">
+                            <label for="chk-province">Provincia *</label>
+                            <select id="chk-province" required>
+                                <option value="Mendoza">Mendoza</option>
+                                <option value="Buenos Aires">Buenos Aires</option>
+                                <option value="CABA">CABA (Capital Federal)</option>
+                                <option value="Catamarca">Catamarca</option>
+                                <option value="Chaco">Chaco</option>
+                                <option value="Chubut">Chubut</option>
+                                <option value="Cordoba">Córdoba</option>
+                                <option value="Corrientes">Corrientes</option>
+                                <option value="Entre Rios">Entre Ríos</option>
+                                <option value="Formosa">Formosa</option>
+                                <option value="Jujuy">Jujuy</option>
+                                <option value="La Pampa">La Pampa</option>
+                                <option value="La Rioja">La Rioja</option>
+                                <option value="Misiones">Misiones</option>
+                                <option value="Neuquen">Neuquén</option>
+                                <option value="Rio Negro">Río Negro</option>
+                                <option value="Salta">Salta</option>
+                                <option value="San Juan">San Juan</option>
+                                <option value="San Luis">San Luis</option>
+                                <option value="Santa Cruz">Santa Cruz</option>
+                                <option value="Santa Fe">Santa Fe</option>
+                                <option value="Santiago del Estero">Santiago del Estero</option>
+                                <option value="Tierra del Fuego">Tierra del Fuego</option>
+                                <option value="Tucuman">Tucumán</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="chk-city">Localidad *</label>
+                            <input type="text" id="chk-city" required placeholder="Ej: Ciudad de Mendoza">
+                        </div>
+                        <div class="form-group">
+                            <label for="chk-zip">Código Postal *</label>
+                            <input type="text" id="chk-zip" required placeholder="Ej: 5500">
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Paso 2: Método de Pago -->
+                <div class="checkout-step-panel" id="step-panel-2">
+                    <h4 style="font-family:var(--font-sans); font-size:1.1rem; margin-bottom:20px; font-weight:600;">Selección de pago</h4>
+                    <div class="payment-methods-grid">
+                        <div class="payment-method-card selected" data-method="mercadopago">
+                            <div class="payment-method-radio"></div>
+                            <div class="payment-method-text">
+                                <h4>Mercado Pago (Crédito, Débito, Saldo)</h4>
+                                <p>Aboná de forma segura con tarjeta de crédito en cuotas sin interés o débito directo a través de la pasarela líder.</p>
+                            </div>
+                        </div>
+                        <div class="payment-method-card" data-method="transfer">
+                            <div class="payment-method-radio"></div>
+                            <div class="payment-method-text">
+                                <h4>Transferencia Bancaria Directa</h4>
+                                <p>Recibirás los datos bancarios de la Familia Arreguez para enviar tu comprobante. Despacho inmediato.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-summary-box" id="checkout-order-summary">
+                        <!-- Carga dinámica del resumen de orden -->
+                    </div>
+                </div>
+                
+                <!-- Paso 3: Confirmación Final Éxito -->
+                <div class="checkout-step-panel" id="step-panel-3">
+                    <div class="checkout-success-panel">
+                        <div class="checkout-success-icon flex-center">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                        <h4>¡Gracias por tu compra!</h4>
+                        <p>Tu orden de El Arrebato ha sido recibida con éxito y ya está en proceso de preparación en la bodega. Te enviamos un mail automático con el resumen.</p>
+                        
+                        <div class="order-summary-box" id="success-summary-box" style="text-align: left;">
+                            <!-- Detalle resumen exitoso -->
+                        </div>
+                        <div id="payment-instructions"></div>
+                        
+                        <button class="btn btn-solid" id="checkout-finish-btn" style="margin-top: 24px;">Volver a la Tienda</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="checkout-footer">
+                <button class="btn btn-outline" id="checkout-prev" style="display: none;">Volver</button>
+                <button class="btn btn-solid" id="checkout-next">Continuar a pago</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Header de la Landing Page -->
+    <header>
+        <div class="nav-container">
+            <a href="#hero" class="logo">EL ARREBATO<span>.</span></a>
+            
+            <nav class="nav-links" id="nav-links">
+                <a href="#hero" class="active">Inicio</a>
+                <a href="#el-vino">El Vino</a>
+                <a href="#nuestra-historia">Nuestra Historia</a>
+                <a href="#experiencia">Experiencia</a>
+                <a href="#comprar">Comprar</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            
+            <div class="nav-actions">
+                <div class="cart-icon-btn" id="cart-icon-btn" aria-label="Carrito de compras">
+                    <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span class="cart-badge" style="display: none;">0</span>
+                </div>
+                <a href="#comprar" class="btn btn-solid" style="padding: 10px 20px; font-size: 0.75rem;">Comprar ahora</a>
+                <div class="menu-toggle" id="menu-toggle" aria-label="Menu hamburguesa">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 5. Hero Principal (Pantalla Completa) -->
+    <section id="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="hero-tagline">Malbec 2025 · Valle de Uco · Mendoza</span>
+                <h1>Un Malbec nacido para compartir</h1>
+                <p>Desde el Valle de Uco, una edición con carácter, arte y una historia que comienza entre amigos.</p>
+                <div class="hero-buttons">
+                    <a href="#comprar" class="btn btn-solid">Comprar El Arrebato</a>
+                    <a href="#nuestra-historia" class="btn btn-outline">Descubrir su historia</a>
+                </div>
+                <div class="hero-wine-info">
+                    <div class="hero-wine-info-item">
+                        <span class="label">Presentación</span>
+                        <span class="val">Botella 750 ml</span>
+                    </div>
+                    <div class="hero-wine-info-item">
+                        <span class="label">Graduación</span>
+                        <span class="val">14% Alc./Vol.</span>
+                    </div>
+                    <div class="hero-wine-info-item">
+                        <span class="label">Origen</span>
+                        <span class="val">Mendoza, AR</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="hero-visual-bg"></div>
+                <img src="public/images/arrebato_perspectiva.png" alt="Botella de Vino El Arrebato Malbec" class="hero-bottle-img">
+            </div>
+        </div>
+        
+        <div class="scroll-indicator" onclick="document.getElementById('el-vino').scrollIntoView({behavior: 'smooth'});">
+            <span>Explorar</span>
+        </div>
+    </section>
+
+    <!-- 6. Presentación del Producto & Ficha Técnica -->
+    <section id="el-vino" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span>El Vino</span>
+                <h2>El Arrebato Malbec 2025</h2>
+                <p>Una expresión del Valle de Uco creada para transformar un encuentro en un recuerdo.</p>
+            </div>
+            
+            <div class="product-showcase">
+                <div class="product-gallery">
+                    <div class="gallery-main">
+                        <img src="public/images/arrebato_frente.png" alt="El Arrebato Malbec" id="main-gallery-img">
+                        <div class="zoom-hint">
+                            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" style="margin-top:1px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            Pasa el cursor para ver detalles
+                        </div>
+                    </div>
+                    <div class="gallery-thumbs">
+                        <div class="thumb-btn active" data-type="frente">
+                            <img src="public/images/arrebato_frente.png" alt="Frente">
+                        </div>
+                        <div class="thumb-btn" data-type="perspectiva">
+                            <img src="public/images/arrebato_perspectiva.png" alt="Perspectiva">
+                        </div>
+                        <div class="thumb-btn" data-type="contra">
+                            <img src="public/images/arrebato_contraetiqueta.png" alt="Contraetiqueta">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-details">
+                    <h3>Ficha de Colección</h3>
+                    <p class="product-desc">Cada botella guarda en su interior el equilibrio entre la altura de los viñedos de Valle de Uco, la fineza artesanal del Malbec y la personalidad de una etiqueta con impronta contemporánea y artística.</p>
+                    
+                    <div class="specs-table">
+                        <div class="spec-row">
+                            <span class="spec-label">Varietal</span>
+                            <span class="spec-value">Malbec 100%</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Cosecha</span>
+                            <span class="spec-value">2025</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Origen</span>
+                            <span class="spec-value">Valle de Uco, Mendoza, Argentina</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Contenido</span>
+                            <span class="spec-value">750 ml</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Graduación Alcohólica</span>
+                            <span class="spec-value">14% Alc./Vol.</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Productor</span>
+                            <span class="spec-value">Bodega INV A70068 para Familia Arreguez</span>
+                        </div>
+                    </div>
+                    
+                    <div class="tasting-notes">
+                        <h4>Notas de Cata</h4>
+                        <p id="db-tasting-notes">
+                            <!-- Inyección dinámica de textos desde DB local -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Módulo de E-Commerce (Sección de Compra) -->
+    <section id="comprar" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span>Tienda Online</span>
+                <h2>Adquirir El Arrebato</h2>
+                <p>Seleccioná tu presentación preferida y realizá tu pedido directamente a la bodega. Despachos a todo el país.</p>
+            </div>
+            
+            <div class="ecommerce-container">
+                <div class="ecommerce-preview">
+                    <img src="public/images/arrebato_perspectiva.png" alt="Botella El Arrebato Malbec">
+                </div>
+                
+                <div class="ecommerce-buy-card">
+                    <span class="ecommerce-badge-promo">Directo de Bodega</span>
+                    <h3 class="ecommerce-wine-title">El Arrebato Malbec 2025</h3>
+                    <p class="ecommerce-wine-subtitle">Malbec · Edición Especial · 750 ml</p>
+                    
+                    <div class="presentation-selector" id="presentation-selector">
+                        <!-- Generación dinámica de opciones de pack (1 botella, pack de 3, 6, 12) -->
+                    </div>
+                    
+                    <!-- Controles de cantidad -->
+                    <div class="ecommerce-actions">
+                        <div class="quantity-selector">
+                            <button class="qty-btn" id="buy-qty-minus" aria-label="Restar">-</button>
+                            <input type="text" class="qty-input" id="buy-qty" value="1" readonly>
+                            <button class="qty-btn" id="buy-qty-plus" aria-label="Sumar">+</button>
+                        </div>
+                        <button class="btn btn-solid" id="btn-add-cart">Agregar al Carrito</button>
+                    </div>
+                    
+                    <button class="btn btn-outline" id="btn-buy-now" style="width: 100%; margin-bottom: 24px; height: 54px; letter-spacing: 0.2em;">Comprar ahora</button>
+                    
+                    <!-- Stock status -->
+                    <div class="stock-indicator-text" id="db-stock-indicator">
+                        <!-- Cargando stock -->
+                    </div>
+                    
+                    <!-- Promos y Cuotas -->
+                    <div class="payment-promos">
+                        <div class="promo-item">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                            <span>Hasta <strong>3 cuotas sin interés</strong> con tarjetas bancarias de crédito.</span>
+                        </div>
+                        <div class="promo-item">
+                            <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            <span><strong>Envío gratis</strong> en compras superiores a $80.000 ARS en todo el país.</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Calculador de envío -->
+                    <div class="shipping-calc">
+                        <h4>Calculá el envío a domicilio</h4>
+                        <div class="shipping-input-group">
+                            <input type="text" id="shipping-zip" placeholder="Ingresá tu Código Postal (Ej: 5500 o C1425)">
+                            <button class="btn btn-outline" id="calc-shipping-btn">Calcular</button>
+                        </div>
+                        <div class="shipping-result" id="shipping-result"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Nuestra Historia (El Pentágono de los Amigos) -->
+    <section id="nuestra-historia" class="section-padding">
+        <div class="container story-grid">
+            <div class="story-content">
+                <div class="section-header" style="text-align: left; margin-bottom: 32px; max-width: 100%;">
+                    <span>Nuestra Historia</span>
+                    <h2>El pentágono de los amigos</h2>
+                </div>
+                <div class="story-text" id="db-brand-history">
+                    <!-- Contenido editable inyectado de la historia familiar y conceptual -->
+                </div>
+            </div>
+            
+            <div class="story-visual-container">
+                <!-- SVG Interactivo del Pentágono de Amigos -->
+                <div class="pentagon-svg-container">
+                    <svg viewBox="0 0 300 300" class="pentagon-svg">
+                        <circle cx="150" cy="150" r="120" class="pentagon-bg-circle"></circle>
+                        <!-- Pentágono Geométrico. Vértices:
+                             1: (150, 40) - Confianza
+                             2: (264, 123) - Risas
+                             3: (220, 257) - Anécdotas
+                             4: (80, 257) - Lealtad
+                             5: (36, 123) - Unión
+                        -->
+                        <polygon points="150,40 264,123 220,257 80,257 36,123" class="pentagon-line"></polygon>
+                        
+                        <!-- Nodos -->
+                        <circle cx="150" cy="40" r="6" class="pentagon-node" data-concept="confianza"></circle>
+                        <circle cx="264" cy="123" r="6" class="pentagon-node" data-concept="risas"></circle>
+                        <circle cx="220" cy="257" r="6" class="pentagon-node" data-concept="anecdotas"></circle>
+                        <circle cx="80" cy="257" r="6" class="pentagon-node" data-concept="lealtad"></circle>
+                        <circle cx="36" cy="123" r="6" class="pentagon-node" data-concept="union"></circle>
+                        
+                        <!-- Textos etiquetas -->
+                        <text x="150" y="25" class="pentagon-label-text" data-concept="confianza">Confianza</text>
+                        <text x="280" y="140" class="pentagon-label-text" data-concept="risas" style="text-anchor: start;">Risas</text>
+                        <text x="235" y="275" class="pentagon-label-text" data-concept="anecdotas" style="text-anchor: start;">Anécdotas</text>
+                        <text x="65" y="275" class="pentagon-label-text" data-concept="lealtad" style="text-anchor: end;">Lealtad</text>
+                        <text x="20" y="140" class="pentagon-label-text" data-concept="union" style="text-anchor: end;">Unión</text>
+                    </svg>
+                    
+                    <!-- Tarjeta interactiva sobre el pentágono -->
+                    <div class="pentagon-info-card">
+                        <h5 id="pentagon-info-title">Pilar de Amistad</h5>
+                        <p id="pentagon-info-desc">Selecciona o posate sobre un pilar del pentágono para descubrir qué representa en cada copa de El Arrebato.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Identidad Artística de la Etiqueta -->
+    <section id="identidad-artistica" class="section-padding">
+        <div class="container art-grid">
+            <div class="art-image-frame">
+                <!-- Seccion zoom sobre ilustración botella -->
+                <img src="public/images/arrebato_contraetiqueta.png" alt="Ilustración artística etiqueta El Arrebato" class="art-image-zoom">
+            </div>
+            
+            <div class="art-details">
+                <div class="section-header" style="text-align: left; margin-bottom: 32px; max-width: 100%;">
+                    <span>Arte & Vino</span>
+                    <h2>Una etiqueta que también cuenta una historia</h2>
+                </div>
+                <p id="db-art-inspiration">
+                    <!-- Carga dinámica de la descripción de la ilustración artística -->
+                </p>
+                
+                <div style="margin-bottom: 20px;">
+                    <strong class="text-gold" style="font-size:0.9rem; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:4px;">Significado de la Figura Femenina</strong>
+                    <span id="db-art-woman" style="font-size:0.95rem; color:var(--color-gray-warm)">-</span>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <strong class="text-gold" style="font-size:0.9rem; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:4px;">Significado del Pentágono</strong>
+                    <span id="db-art-pentagon" style="font-size:0.95rem; color:var(--color-gray-warm)">-</span>
+                </div>
+                
+                <div class="artist-signature">
+                    <span class="artist-name" id="db-art-author">-</span>
+                    <span class="artist-title">Obra Original de la Etiqueta</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Experiencia El Arrebato -->
+    <section id="experiencia" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span>Experiencia</span>
+                <h2>Hay encuentros que merecen ser recordados</h2>
+                <p>Nacimos para formar parte de momentos genuinos. ¿Cuál es tu próximo encuentro?</p>
+            </div>
+            
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <div class="experience-icon flex-center">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <h4>Para compartir</h4>
+                    <p>Ideal para coronar charlas de sobremesa infinitas y reírnos de las mismas anécdotas de siempre.</p>
+                </div>
+                
+                <div class="experience-card">
+                    <div class="experience-icon flex-center">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M20 12v10H4V12"></path><path d="M2 7h20v5H2z"></path><path d="M12 22V7"></path><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+                    </div>
+                    <h4>Para regalar</h4>
+                    <p>Un obsequio sofisticado para quienes aprecian el arte, el diseño exclusivo y la máxima expresión del Malbec mendocino.</p>
+                </div>
+                
+                <div class="experience-card">
+                    <div class="experience-icon flex-center">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <h4>Para celebrar</h4>
+                    <p>Para brindar en los grandes acontecimientos de la vida o inaugurar un nuevo proyecto familiar.</p>
+                </div>
+                
+                <div class="experience-card">
+                    <div class="experience-icon flex-center">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    </div>
+                    <h4>Para descubrir</h4>
+                    <p>Para descorchar en solitario o en pareja, prestando atención a los matices del terroir y su intensidad.</p>
+                </div>
+            </div>
+            
+            <div class="experience-cta-box">
+                <button class="btn btn-solid" id="recommend-open-btn">Elegí tu experiencia</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modal recomendador asistente -->
+    <div class="recommend-modal" id="recommend-modal">
+        <div class="recommend-card">
+            <span class="close-recommend" id="close-recommend">&times;</span>
+            <div id="recommend-question" class="recommend-question">Cargando...</div>
+            <div id="recommend-options" class="recommend-options">
+                <!-- Carga opciones dinámica -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 11. Maridajes -->
+    <section id="maridajes" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span>Gastronomía</span>
+                <h2>Maridajes Recomendados</h2>
+                <p>Sugerencias del enólogo para potenciar las notas a ciruela madura y chocolate de nuestro Malbec 2025.</p>
+            </div>
+            
+            <div class="maridajes-slider">
+                <div class="maridaje-item">
+                    <div class="maridaje-icon-box">🥩</div>
+                    <h4>Carnes Rojas</h4>
+                    <p>Ojo de bife al asador o costillar a la llama de leña mendocina.</p>
+                </div>
+                <div class="maridaje-item">
+                    <div class="maridaje-icon-box">🍝</div>
+                    <h4>Pastas</h4>
+                    <p>Sorrentinos de cordero braseado con reducción de salsa de tomates intensos.</p>
+                </div>
+                <div class="maridaje-item">
+                    <div class="maridaje-icon-box">🧀</div>
+                    <h4>Quesos Maduros</h4>
+                    <p>Tablas de queso gouda, provolone o azul suave con frutos secos.</p>
+                </div>
+                <div class="maridaje-item">
+                    <div class="maridaje-icon-box">🥗</div>
+                    <h4>Cocina de Autor</h4>
+                    <p>Risotto de hongos silvestres perfumado con aceite de trufas negras.</p>
+                </div>
+                <div class="maridaje-item">
+                    <div class="maridaje-icon-box">🥖</div>
+                    <h4>Picadas</h4>
+                    <p>Salames curados regionales, aceitunas marinadas y pan artesanal de masa madre.</p>
+                </div>
+            </div>
+            
+            <p style="font-size:0.75rem; color:var(--color-gray-warm); text-align:center; margin-top:32px; font-style:italic;">* Estas recomendaciones generales pueden adecuarse según la cata oficial de Familia Arreguez.</p>
+        </div>
+    </section>
+
+    <!-- 12. Testimonios (Carrusel Reseñas) -->
+    <section id="testimonios" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span>Opiniones</span>
+                <h2>Encuentros Compartidos</h2>
+                <p>Lo que dicen quienes ya descorcharon El Arrebato Malbec.</p>
+            </div>
+            
+            <div class="testimonios-carousel-wrapper">
+                <div class="carousel-btn carousel-btn-prev" id="carousel-prev" aria-label="Anterior">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </div>
+                
+                <div style="overflow: hidden; width: 100%;">
+                    <div class="testimonios-track" id="testimonios-track">
+                        <!-- Inyección de testimonios dinámicos JS -->
+                    </div>
+                </div>
+                
+                <div class="carousel-btn carousel-btn-next" id="carousel-next" aria-label="Siguiente">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+                
+                <div class="carousel-dots" id="carousel-dots">
+                    <!-- Dots dinámicos de navegación -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. Preguntas Frecuentes (FAQ) -->
+    <section id="faq" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span>Preguntas Frecuentes</span>
+                <h2>Información de Compra y Envío</h2>
+                <p>Resolvemos tus dudas sobre el proceso comercial, formas de pago y logística de la bodega.</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question-btn">
+                        <h4>¿Dónde se produce El Arrebato?</h4>
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>El Arrebato es un vino elaborado con uvas seleccionadas del prestigioso Valle de Uco, Mendoza, Argentina. Específicamente en la zona de Gualtallary, reconocida por sus suelos pedregosos y altura excepcional.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question-btn">
+                        <h4>¿Qué tipo de vino es?</h4>
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Se trata de un vino varietal 100% Malbec cosechado a mano durante la añada 2025. Destaca por su perfil fresco pero estructurado, y su fermentación artesanal en pequeñas piletas de concreto.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question-btn">
+                        <h4>¿Cuál es el contenido de la botella?</h4>
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nuestra única presentación oficial es la botella bordelesa premium de 750 ml.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question-btn">
+                        <h4>¿Realizan envíos a domicilio?</h4>
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, enviamos a domicilio a todo el país. Contamos con embalaje protector especial para botellas de vidrio, garantizando que el vino llegue en condiciones óptimas de temperatura y seguridad.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question-btn">
+                        <h4>¿Cuánto demora la entrega de los pedidos?</h4>
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Dentro de la provincia de Mendoza la entrega se realiza en 24 a 48 horas hábiles. Para la Ciudad Autónoma de Buenos Aires (CABA) y el Gran Buenos Aires (GBA), el tiempo de transporte es de 3 a 5 días hábiles. El resto de las capitales y zonas demora entre 5 y 7 días hábiles.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question-btn">
+                        <h4>¿Qué medios de pago aceptan en la tienda?</h4>
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Aceptamos tarjetas de crédito bancarias (Visa, Mastercard, American Express), débito y saldo de Mercado Pago a través de pasarela cifrada de pagos. También ofrecemos la opción de transferencia bancaria directa (CBU) con acreditación rápida.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question-btn">
+                        <h4>¿Puedo comprar para regalar?</h4>
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, por supuesto. Podés indicar los datos de entrega de la persona agasajada al completar el checkout y detallar en los comentarios que es un obsequio. No enviaremos el ticket de precio en la caja.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question-btn">
+                        <h4>¿Hay descuentos por cantidad de compra?</h4>
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, contamos con precios especiales en packs de 3 botellas y cajas cerradas de 6 y 12 unidades directos de bodega, los cuales se ven reflejados automáticamente en nuestro módulo de compra online.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question-btn">
+                        <h4>¿Cómo debo conservar las botellas en casa?</h4>
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Recomendamos almacenar las botellas acostadas horizontalmente, en un lugar oscuro, libre de vibraciones y con una temperatura constante que ronde entre los 14°C y 16°C.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question-btn">
+                        <h4>¿Se emite factura por la compra?</h4>
+                        <span class="faq-icon"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, emitimos facturas tipo A y B para todas las compras. Si requerís factura A, completá tu CUIT y datos fiscales correspondientes en el formulario de envío o envianos un mensaje a nuestro correo electrónico.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. Newsletter (Suscripción Boletín) -->
+    <section id="newsletter">
+        <div class="container">
+            <div class="newsletter-box">
+                <h3>Formá parte del próximo encuentro</h3>
+                <p>Suscribite a nuestro newsletter y recibí novedades exclusivas, invitaciones a catas privadas, preventas y beneficios directos de El Arrebato.</p>
+                
+                <form class="newsletter-form" id="newsletter-form">
+                    <div class="newsletter-input-group">
+                        <input type="text" id="news-name" required placeholder="Tu nombre">
+                        <input type="email" id="news-email" required placeholder="Tu correo electrónico">
+                    </div>
+                    
+                    <input type="date" id="news-dob" placeholder="Fecha de nacimiento (Opcional)" style="margin-top: 10px;">
+                    
+                    <label class="consent-checkbox">
+                        <input type="checkbox" id="news-consent" required>
+                        <span>Acepto recibir correos y notificaciones sobre lanzamientos comerciales y eventos de El Arrebato. Declaro ser mayor de 18 años.</span>
+                    </label>
+                    
+                    <button type="submit" class="btn btn-solid" style="margin-top: 16px;">Quiero sumarme</button>
+                </form>
+                
+                <div class="newsletter-success" id="newsletter-success">
+                    <h4>¡Ya estás sumado a Familia Arreguez!</h4>
+                    <p style="margin-top: 8px;">Pronto recibirás nuestras novedades en tu bandeja de entrada.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 15. Feed Instagram Mockup -->
+    <section id="instagram" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span>Comunidad</span>
+                <h2>Seguinos en Instagram</h2>
+                <p>Sumate a nuestro perfil <a href="https://www.instagram.com/elarrebatowines" target="_blank" style="color:var(--color-gold); font-weight:600;">@elarrebatowines</a> y compartí tus mejores copas.</p>
+            </div>
+            
+            <div class="instagram-grid">
+                <div class="instagram-item">
+                    <img src="public/images/arrebato_frente.png" alt="El Arrebato en la mesa">
+                    <div class="instagram-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </div>
+                </div>
+                <div class="instagram-item">
+                    <img src="public/images/arrebato_perspectiva.png" alt="Brindis entre amigos">
+                    <div class="instagram-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </div>
+                </div>
+                <div class="instagram-item">
+                    <img src="public/images/arrebato_contraetiqueta.png" alt="Viñedos al atardecer en Gualtallary">
+                    <div class="instagram-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </div>
+                </div>
+                <div class="instagram-item">
+                    <img src="public/images/arrebato_frente.png" alt="Detalle del corcho y el servicio">
+                    <div class="instagram-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <a href="https://www.instagram.com/elarrebatowines" target="_blank" class="btn btn-outline">Ver Perfil Completo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 16. Contacto & Ventas Mayoristas -->
+    <section id="contacto" class="section-padding">
+        <div class="container contacto-grid">
+            <div class="contacto-info">
+                <h3>Contacto & Ventas Mayoristas</h3>
+                <p>¿Tenés una vinoteca, restaurante, hotel o distribuidora y querés incorporar El Arrebato Malbec a tu portfolio? Escribinos completando el formulario o a través de nuestros canales oficiales.</p>
+                
+                <div class="contacto-details">
+                    <div class="contacto-detail-item">
+                        <div class="contacto-icon">
+                            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <div class="contacto-text-box">
+                            <h5>Teléfono de Atención</h5>
+                            <p id="db-phone">-</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contacto-detail-item">
+                        <div class="contacto-icon">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        </div>
+                        <div class="contacto-text-box">
+                            <h5>Correo Electrónico</h5>
+                            <p id="db-email">-</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contacto-detail-item">
+                        <div class="contacto-icon">
+                            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </div>
+                        <div class="contacto-text-box">
+                            <h5>Bodega y Viñedos</h5>
+                            <p id="db-address">-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <form class="contacto-form" id="contacto-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ct-name">Nombre y Apellido *</label>
+                        <input type="text" id="ct-name" required placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="ct-company">Empresa / Negocio (Opcional)</label>
+                        <input type="text" id="ct-company" placeholder="Ej: Vinoteca Uco">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ct-city">Ciudad y Provincia *</label>
+                        <input type="text" id="ct-city" required placeholder="Ej: Rosario, Santa Fe">
+                    </div>
+                    <div class="form-group">
+                        <label for="ct-whatsapp">WhatsApp / Celular *</label>
+                        <input type="tel" id="ct-whatsapp" required placeholder="Ej: +54 9 341 1234567">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ct-email">Correo Electrónico *</label>
+                    <input type="email" id="ct-email" required placeholder="ejemplo@correo.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="ct-type">Tipo de consulta *</label>
+                    <select id="ct-type" required>
+                        <option value="Consumidor Final">Consumidor Final</option>
+                        <option value="Vinoteca">Vinoteca / Tienda Especializada</option>
+                        <option value="Restaurante / Bar">Restaurante / Bar</option>
+                        <option value="Hotel">Hotel</option>
+                        <option value="Distribuidor">Distribuidor Comercial</option>
+                        <option value="Regalos Empresariales">Regalos Empresariales</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ct-message">Mensaje *</label>
+                    <textarea id="ct-message" required placeholder="¿Cómo podemos ayudarte? Detallá tu consulta aquí."></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-solid" style="height: 52px; width: 100%;">Enviar consulta</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 17. Footer y Enlaces Legales -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#hero" class="logo" style="margin-bottom:16px; display:inline-block;">EL ARREBATO<span>.</span></a>
+                <p>Vino Malbec premium añada 2025 de Valle de Uco, Mendoza. Un proyecto de Familia Arreguez que rinde homenaje a la amistad genuina y al arte.</p>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/elarrebatowines" target="_blank" class="social-btn" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#el-vino">El Vino</a></li>
+                    <li><a href="#nuestra-historia">Nuestra Historia</a></li>
+                    <li><a href="#experiencia">Experiencia</a></li>
+                    <li><a href="#comprar">Comprar</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="admin.html" target="_blank" style="color:var(--color-gold); font-weight:600;">Acceso Interno Bodega</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Políticas Comerciales</h4>
+                <ul>
+                    <li><a href="#comprar">Política de Envíos</a></li>
+                    <li><a href="#contacto">Devoluciones y Cambios</a></li>
+                    <li><a href="#contacto">Términos del Servicio</a></li>
+                    <li><a href="#contacto">Privacidad de Datos</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Identificación Fiscal</h4>
+                <ul>
+                    <li id="db-razon-social" style="font-size:0.85rem; color:var(--color-gray-warm)">-</li>
+                    <li id="db-fiscal-info" style="font-size:0.8rem; color:var(--color-gray-warm)">-</li>
+                    <li style="margin-top: 10px;">
+                        <a href="https://www.argentina.gob.ar/defensadelconsumidor" target="_blank" class="footer-arrepentimiento" style="border: 1px solid var(--color-border); padding: 4px 8px; font-size: 0.75rem; color:var(--color-ivory);">Defensa del Consumidor</a>
+                    </li>
+                    <li style="margin-top: 10px;">
+                        <a href="#comprar" class="footer-arrepentimiento">Botón de Arrepentimiento</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div style="font-size: 0.8rem; color: var(--color-gray-warm);">
+                &copy; 2026 El Arrebato Wines. Todos los derechos reservados. Diseñado bajo estándares premium.
+            </div>
+            <div class="footer-legal-links">
+                <span>Cosecha 2025</span>
+                <span>Mendoza, Argentina</span>
+            </div>
+        </div>
+        
+        <div class="legal-drinking-notice">
+            Beber con moderación. Prohibida su venta a menores de 18 años.
+        </div>
+    </footer>
+
+    <!-- 18. Botón Flotante de WhatsApp -->
+    <a href="https://api.whatsapp.com/send?phone=5492615555555&text=Hola,%20quiero%20conocer%20m%C3%A1s%20sobre%20El%20Arrebato%20Malbec%20y%20las%20opciones%20de%20compra." class="whatsapp-float flex-center" id="wa-float" target="_blank" aria-label="Abrir chat de WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.97-1.863-1.868-4.343-2.898-6.978-2.9-5.437 0-9.865 4.37-9.869 9.803-.001 1.77.476 3.498 1.381 5.03l-.403 1.472.483.483zm11.96-6.612c-.29-.145-1.716-.848-1.983-.946-.266-.097-.46-.145-.654.145-.193.291-.749.946-.918 1.139-.17.194-.339.217-.63.072-.29-.145-1.226-.452-2.336-1.443-.863-.77-1.446-1.72-1.615-2.012-.17-.29-.018-.448.128-.592.13-.13.29-.339.435-.509.145-.17.193-.291.29-.485.097-.194.049-.364-.025-.509-.072-.145-.654-1.577-.896-2.159-.236-.569-.475-.492-.654-.501-.17-.008-.364-.01-.557-.01-.193 0-.509.072-.776.364-.266.291-1.018.994-1.018 2.424 0 1.43 1.042 2.812 1.188 3.006.145.194 2.05 3.13 4.966 4.386.694.3 1.236.478 1.658.613.697.221 1.332.19 1.833.115.558-.084 1.716-.703 1.958-1.382.242-.679.242-1.261.17-1.382-.072-.12-.266-.194-.557-.339z"/></svg>
+    </a>
+
+    <!-- Scripts JavaScript -->
+    <script src="js/app.js"></script>
+</body>
+</html>
