@@ -308,6 +308,9 @@ h1, h2, h3, h4, h5, h6 {
 /* --------------------------------------------------
    2. Header & Navegación
    -------------------------------------------------- */
+/* --------------------------------------------------
+   2. Header & Navegación
+   -------------------------------------------------- */
 header {
     position: fixed;
     top: 0;
@@ -319,12 +322,12 @@ header {
 }
 
 header.scrolled {
-    background: rgba(17, 16, 15, 0.95);
+    background: rgba(8, 7, 6, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     padding: 16px 48px;
     border-bottom: 1px solid var(--color-border-light);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .nav-container {
@@ -337,15 +340,16 @@ header.scrolled {
 
 .logo {
     font-family: var(--font-serif);
-    font-size: 1.6rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
     color: var(--color-ivory);
     text-transform: uppercase;
     z-index: 1001;
+    transition: var(--transition-fast);
 }
 
-.logo span {
+.logo:hover {
     color: var(--color-gold);
 }
 
@@ -356,11 +360,12 @@ header.scrolled {
 }
 
 .nav-links a {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     font-weight: 500;
     color: var(--color-gray-warm);
+    transition: var(--transition-fast);
 }
 
 .nav-links a:hover,
@@ -371,7 +376,45 @@ header.scrolled {
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 20px;
+}
+
+.lang-selector-pill {
+    display: inline-flex;
+    border: 1px solid rgba(244, 239, 229, 0.15);
+    border-radius: 20px;
+    padding: 2px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.lang-btn {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 4px 8px;
+    border-radius: 12px;
+    color: var(--color-gray-warm);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.lang-btn.active {
+    background-color: var(--color-gold);
+    color: var(--color-bg-dark);
+}
+
+.nav-cta-btn {
+    padding: 8px 16px;
+    font-size: 0.75rem;
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+    letter-spacing: 0.1em;
+}
+
+.nav-cta-btn:hover {
+    background-color: var(--color-gold);
+    color: var(--color-bg-dark);
+    border-color: var(--color-gold);
 }
 
 .cart-icon-btn {
@@ -438,9 +481,8 @@ header.scrolled {
     display: flex;
     align-items: center;
     position: relative;
-    padding-top: 80px;
     overflow: hidden;
-    background: radial-gradient(circle at 70% 30%, var(--color-wine-deep) 0%, var(--color-bg-dark) 70%);
+    background-color: #080706;
 }
 
 #hero::before {
@@ -449,14 +491,15 @@ header.scrolled {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 250px;
-    background: linear-gradient(to top, var(--color-bg-dark) 0%, transparent 100%);
+    height: 200px;
+    background: linear-gradient(to top, #080706 0%, transparent 100%);
     z-index: 2;
+    pointer-events: none;
 }
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: 48px;
     align-items: center;
     z-index: 3;
@@ -467,31 +510,36 @@ header.scrolled {
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    text-align: left;
 }
 
 .hero-tagline {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.25em;
     color: var(--color-gold);
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     display: block;
 }
 
-.hero-content h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    line-height: 1.1;
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+    line-height: 1.05;
     margin-bottom: 24px;
-    font-weight: 500;
+    font-weight: 400;
+    color: var(--color-ivory);
+    letter-spacing: -0.01em;
 }
 
-.hero-content p {
-    font-size: clamp(1.05rem, 2vw, 1.25rem);
+.hero-desc {
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
     color: var(--color-gray-warm);
     margin-bottom: 40px;
-    max-width: 550px;
+    max-width: 480px;
     font-weight: 300;
+    line-height: 1.65;
 }
 
 .hero-buttons {
@@ -500,61 +548,25 @@ header.scrolled {
     flex-wrap: wrap;
 }
 
-.hero-wine-info {
-    margin-top: 48px;
-    display: flex;
-    gap: 32px;
-    border-top: 1px solid var(--color-border);
-    padding-top: 24px;
-    max-width: 500px;
-}
-
-.hero-wine-info-item span {
-    display: block;
-}
-
-.hero-wine-info-item .label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-gray-warm);
-    margin-bottom: 4px;
-}
-
-.hero-wine-info-item .val {
-    font-family: var(--font-serif);
-    font-size: 1.1rem;
-    color: var(--color-ivory);
-}
-
 .hero-visual {
-    position: relative;
-    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transform: scale(0.9);
-    animation: scaleInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-}
-
-.hero-visual-bg {
-    position: absolute;
-    width: 450px;
-    height: 450px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(220, 113, 59, 0.2) 0%, rgba(89, 31, 41, 0.4) 50%, transparent 70%);
-    filter: blur(30px);
+    animation: fadeInRight 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
     z-index: 1;
 }
 
-.hero-bottle-img {
-    height: 80vh;
-    max-height: 620px;
-    object-fit: contain;
-    z-index: 2;
-    filter: drop-shadow(0 20px 50px rgba(0,0,0,0.6));
-    animation: floatBottle 6s ease-in-out infinite;
+.hero-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 /* Scroll indicator */
@@ -2552,6 +2564,17 @@ footer {
     to { stroke-dasharray: 1000 0; }
 }
 
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 /* --------------------------------------------------
    Media Queries & Responsive (Diseño Mobile-First)
    -------------------------------------------------- */
@@ -2573,19 +2596,20 @@ footer {
         justify-content: center;
     }
     
-    .hero-wine-info {
-        justify-content: center;
-        width: 100%;
-    }
-    
     .hero-visual {
+        position: relative;
+        width: 100%;
+        height: 50vh;
+        min-height: 350px;
         order: 1;
-        height: auto;
+        opacity: 1;
+        animation: none;
     }
     
-    .hero-bottle-img {
-        height: 50vh;
-        max-height: 400px;
+    .hero-main-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
     
     .product-showcase {

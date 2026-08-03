@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --------------------------------------------------
     function initAdminDashboard() {
         // Cargar base de datos local
-        const getDB = () => JSON.parse(localStorage.getItem('el_arrebato_db'));
-        const saveDB = (data) => localStorage.setItem('el_arrebato_db', JSON.stringify(data));
+        const getDB = () => JSON.parse(localStorage.getItem('el_arrebato_db_v2'));
+        const saveDB = (data) => localStorage.setItem('el_arrebato_db_v2', JSON.stringify(data));
         let db = getDB();
 
         // Control de Pestañas (Tabs)

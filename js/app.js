@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --------------------------------------------------
     const defaultData = {
         // Precios y Stock
-        priceBottle: 18500, // Precio base de 1 botella ARS
+        priceBottle: 10000, // Precio base de 1 botella ARS (Caja x6 = $60.000)
         stock: 120, // Stock total
         freeShippingMin: 80000, // Importe mínimo para envío gratis
         shippingRates: {
@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
             resto: 7000
         },
         discountPacks: {
-            pack3: 5,  // 5% desc
-            caja6: 10, // 10% desc
-            caja12: 15 // 15% desc
+            pack3: 0,  // 0% desc (Precio sugerido plano)
+            caja6: 0,  // 0% desc ($60.000 final)
+            caja12: 0  // 0% desc ($120.000 final)
         },
         
         // Ficha Técnica & Textos Cata
@@ -33,12 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
         artPentagonMeaning: "Representa el 'Pentágono de los amigos': cinco vértices que sostienen los momentos más preciados de la vida: Confianza, Risas, Anécdotas, Lealtad y Unión.",
         
         // Historia
-        brandHistory: "El Arrebato nació una tarde de otoño en Gualtallary, Valle de Uco, cuando cinco amigos de toda la vida compartían un asado bajo el cielo mendocino. En medio de risas y anécdotas, surgió el deseo de crear un vino que plasmara esa hermandad. 'Familia Arreguez' materializó este sueño, seleccionando las mejores uvas Malbec para embotellar no solo un varietal de alta gama, sino un testimonio líquido del afecto y los encuentros que merecen celebrarse.",
+        brandHistory: "El Arrebato nació una tarde de otoño en Los Chacayes, Valle de Uco, cuando cinco amigos de toda la vida compartían un asado bajo el cielo mendocino. En medio de risas y anécdotas, surgió el deseo de crear un vino que plasmara esa hermandad. 'Familia Arreguez' materializó este sueño, seleccionando las mejores uvas Malbec para embotellar no solo un varietal de alta gama, sino un testimonio líquido del afecto y los encuentros que merecen celebrarse.",
         
         // Contacto
-        cellphone: "+54 9 261 555-5555",
+        cellphone: "+54 9 297 403-0871",
         email: "hola@elarrebatowines.com.ar",
-        address: "Ruta Provincial 89, Gualtallary, Valle de Uco, Mendoza, Argentina",
+        address: "Los Chacayes, Valle de Uco, Mendoza, Argentina",
         razonSocial: "Familia Arreguez S.A. - CUIT: 30-71689234-9",
         fiscalInfo: "Bodega INV N° A70068 - Bebidas alcohólicas de venta exclusiva a mayores de 18 años.",
         
@@ -51,13 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Inicializar localStorage si no existe
-    if (!localStorage.getItem('el_arrebato_db')) {
-        localStorage.setItem('el_arrebato_db', JSON.stringify(defaultData));
+    if (!localStorage.getItem('el_arrebato_db_v2')) {
+        localStorage.setItem('el_arrebato_db_v2', JSON.stringify(defaultData));
     }
     
     // Obtener los datos actualizados de la DB
-    const getDB = () => JSON.parse(localStorage.getItem('el_arrebato_db'));
-    const saveDB = (data) => localStorage.setItem('el_arrebato_db', JSON.stringify(data));
+    const getDB = () => JSON.parse(localStorage.getItem('el_arrebato_db_v2'));
+    const saveDB = (data) => localStorage.setItem('el_arrebato_db_v2', JSON.stringify(data));
 
     let db = getDB();
 
