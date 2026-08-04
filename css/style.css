@@ -1402,34 +1402,56 @@ header.scrolled {
 }
 
 .maridaje-item {
-    background: rgba(255, 255, 255, 0.01);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--color-border-light);
     border-radius: var(--radius-md);
-    padding: 24px;
+    overflow: hidden;
+    padding: 0 0 20px 0;
     text-align: center;
     transition: var(--transition-medium);
+    display: flex;
+    flex-direction: column;
 }
 
 .maridaje-item:hover {
     border-color: var(--color-gold);
-    background: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
 }
 
-.maridaje-icon-box {
-    font-size: 2.5rem;
+.maridaje-img-wrapper {
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
     margin-bottom: 16px;
+    position: relative;
+}
+
+.maridaje-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.maridaje-item:hover .maridaje-img {
+    transform: scale(1.08);
 }
 
 .maridaje-item h4 {
     font-size: 1.1rem;
     margin-bottom: 8px;
     color: var(--color-gold);
+    padding: 0 16px;
 }
 
 .maridaje-item p {
     font-size: 0.85rem;
     color: var(--color-gray-warm);
     font-weight: 300;
+    padding: 0 16px;
 }
 
 /* --------------------------------------------------
