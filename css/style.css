@@ -1172,15 +1172,13 @@ header.scrolled {
 }
 
 .pentagon-info-card {
-    position: absolute;
-    bottom: -40px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    margin-top: 20px;
     background: rgba(23, 21, 20, 0.95);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     padding: 16px 24px;
-    width: 85%;
+    width: 100%;
     text-align: center;
     box-shadow: var(--shadow-soft);
     backdrop-filter: blur(10px);
